@@ -33,11 +33,40 @@ $calculator_text          = '';
 					<li>
 						<?php
 						if ( 1 < count( $available_methods ) ) {
-							printf( '<input type="radio" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="shipping_method" %4$s />', $index, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ), checked( $method->id, $chosen_method, false ) ); // WPCS: XSS ok.
+							printf( '<input type="radio" onload="handleClick(this);" onchange="handleClick(this);" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="shipping_method" %4$s />', $index, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ), checked( $method->id, $chosen_method, false ) ); // WPCS: XSS ok.
 						} else {
 							printf( '<input type="hidden" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="shipping_method" />', $index, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ) ); // WPCS: XSS ok.
 						}
 						printf( '<label for="shipping_method_%1$s_%2$s">%3$s</label>', $index, esc_attr( sanitize_title( $method->id ) ), wc_cart_totals_shipping_method_label( $method ) ); // WPCS: XSS ok.
+            ?>
+            <?php if (sanitize_title( wc_cart_totals_shipping_method_label( $method ) == "Local pickup") && checked( $method->id, $chosen_method, false )) : ?>
+            <div>
+              <p>Select a Pickup Date</p>
+              <?php
+              $selected_time = (string)@WC()->session->get( 'chosen_prefer_pickup' )['prefer_time'];
+              $selected_date = (string)@WC()->session->get( 'chosen_prefer_pickup' )['prefer_date'];
+
+              if (empty($selected_time) || empty($selected_date)){
+                $data = array(
+                  'prefer_time' => $selected_time ?: 'am',
+                  'prefer_date' => $selected_date ?: date("Y-m-d"),
+                );
+                WC()->session->set( 'chosen_prefer_pickup',$data );
+                $selected_time = (string)@WC()->session->get( 'chosen_prefer_pickup' )['prefer_time'];
+                $selected_date = (string)@WC()->session->get( 'chosen_prefer_pickup' )['prefer_date'];
+
+              }
+              ?>
+              <input type="date" id="pickup_date" value="<?= $selected_date; ?>" min="<?php echo date("Y-m-d"); ?>"/>
+              <p>Prefer Pickup Time</p>
+              <input type="radio" id="am" name="pickup_time" value="am" <?= $selected_time == "am" ? "checked" :''?>>
+              <label for="am">AM</label><br>
+              <input type="radio" id="pm" name="pickup_time" value="pm" <?= $selected_time == "pm" ? "checked" :''?>>
+              <label for="pm">PM</label><br>
+              <br/>
+            </div>
+            <?php endif; ?>
+            <?php
 						do_action( 'woocommerce_after_shipping_rate', $method, $index );
 						?>
 					</li>

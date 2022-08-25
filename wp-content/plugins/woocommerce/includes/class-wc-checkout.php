@@ -438,6 +438,7 @@ class WC_Checkout {
 		$this->create_order_line_items( $order, WC()->cart );
 		$this->create_order_fee_lines( $order, WC()->cart );
 		$this->create_order_shipping_lines( $order, WC()->session->get( 'chosen_shipping_methods' ), WC()->shipping()->get_packages() );
+		$this->create_order_shipping_prefer_pickup_lines( $order, WC()->session->get( 'chosen_prefer_pickup' ));
 		$this->create_order_tax_lines( $order, WC()->cart );
 		$this->create_order_coupon_lines( $order, WC()->cart );
 	}
@@ -571,6 +572,19 @@ class WC_Checkout {
 				$order->add_item( $item );
 			}
 		}
+	}
+
+/**
+	 * Add shipping lines to the order.
+	 *
+	 * @param WC_Order $order                   Order Instance.
+	 * @param array    $chosen_shipping_methods Chosen shipping methods.
+	 * @param array    $packages                Packages.
+	 */
+	public function create_order_shipping_prefer_pickup_lines( &$order, $chosen_prefer_pickup ) {
+				foreach ( $chosen_prefer_pickup as $key => $value ) {
+          $order->update_meta_data( $key, $value );
+				}
 	}
 
 	/**

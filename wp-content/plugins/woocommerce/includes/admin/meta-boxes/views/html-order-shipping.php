@@ -19,7 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<td class="name">
 		<div class="view">
-			<?php echo esc_html( $item->get_name() ? $item->get_name() : __( 'Shipping', 'woocommerce' ) ); ?>
+			<?php echo $name= esc_html( $item->get_name() ? $item->get_name() : __( 'Shipping', 'woocommerce' ) ); ?>
+      <?php if ($name =="Local pickup"): ?>
+      <p>Prefer Shipping Time: <?= $order->get_meta("prefer_date"). " ". strtoupper($order->get_meta("prefer_time"))?></p>
+      <?php endif;?>
 		</div>
 		<div class="edit" style="display: none;">
 			<input type="hidden" name="shipping_method_id[]" value="<?php echo esc_attr( $item_id ); ?>" />

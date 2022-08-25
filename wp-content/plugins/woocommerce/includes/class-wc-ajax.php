@@ -251,6 +251,8 @@ class WC_AJAX {
 		}
 
 		WC()->session->set( 'chosen_shipping_methods', $chosen_shipping_methods );
+    $prefer_pickup = isset( $_POST['prefer_pickup'] ) ? wc_clean( wp_unslash( $_POST['prefer_pickup'] ) ) : array();
+		WC()->session->set( 'chosen_prefer_pickup', $prefer_pickup );
 
 		self::get_cart_totals();
 	}
