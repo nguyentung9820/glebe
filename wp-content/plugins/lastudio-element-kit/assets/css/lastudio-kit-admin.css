@@ -1,0 +1,124 @@
+#lastudio-kit-settings-page{
+  visibility: hidden
+}
+#lastudio-kit-settings-page.is-mounted{
+  visibility: visible
+}
+.lastudio-kit-settings-page{
+  margin: 25px 15px 0 15px
+}
+.lastudio-kit-settings-page .cx-vui-tabs-panel > .cx-vui-subtitle{
+  padding: 20px;
+  margin-top: 20px
+}
+.lastudio-kit-settings-page .cx-vui-tabs-panel > .cx-vui-subtitle:first-child{
+  margin-top: 0
+}
+.lastudio-kit-settings-page .lastudio-kit-avaliable-widgets-control .cx-vui-checkgroup{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap
+}
+.lastudio-kit-settings-page .lastudio-kit-avaliable-widgets-control .cx-vui-checkgroup .cx-vui-checkbox-wrap{
+  width: 25%
+}
+@media screen and (max-width: 1200px){
+  .lastudio-kit-settings-page .lastudio-kit-avaliable-widgets-control .cx-vui-checkgroup .cx-vui-checkbox-wrap{
+    width: 50%
+  }
+}
+@media screen and (max-width: 782px){
+  .lastudio-kit-settings-page .lastudio-kit-avaliable-widgets-control .cx-vui-checkgroup .cx-vui-checkbox-wrap{
+    width: 100%
+  }
+}
+.lastudio-kit-settings-page .cx-vui-subtitle{
+  font-size: 15px;
+  line-height: 20px;
+  color: #23282d;
+  font-weight: 500
+}
+.lastudio-kit-settings-page__avaliable-controls{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  margin-bottom: 40px
+}
+.lastudio-kit-settings-page__avaliable-controls:last-child{
+  margin-bottom: 0
+}
+.cx-vui-title{
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+  width: 100%;
+  color: #000;
+}
+.lastudio-kit-settings-page__avaliable-controls .cx-vui-title {
+  margin-bottom: 20px;
+}
+.lastudio-kit-settings-page__avaliable-control{
+  width: 33.3333%
+}
+@media screen and (max-width: 1200px){
+  .lastudio-kit-settings-page__avaliable-control{
+    width: 50%
+  }
+}
+@media screen and (max-width: 782px){
+  .lastudio-kit-settings-page__avaliable-control{
+    width: 100%
+  }
+}
+.lastudio-kit-settings-page__avaliable-control .cx-vui-component__label{
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: normal
+}
+.lastudio-kit-settings-page__avaliable-control .cx-vui-component{
+  padding: 10px 0
+}
+.lastudio-kit-settings-page__disable-all-widgets{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 1px solid #ECECEC;
+  padding-bottom: 20px;
+  margin: 20px 0
+}
+.lastudio-kit-settings-page__disable-all-widgets .cx-vui-component__label{
+  margin-right: 10px
+}
+.cx-vui-component__meta {
+  align-self: center;
+}
+.cx-vui-title.cx-vui-title--divider,
+.cx-vui-subtitle.cx-vui-subtitle--divider {
+  border-bottom: 1px solid #DCDCDD;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+.lastudio-kit-settings-page__fonts-manager .cx-vui-title {
+  margin-bottom: 30px;
+}

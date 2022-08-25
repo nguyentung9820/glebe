@@ -1,0 +1,296 @@
+.lakit-animated-box {
+	position: relative;
+	perspective: 1000px;
+	-webkit-perspective: 1000px;
+	color: #fff;
+}
+.lakit-animated-box__back,
+.lakit-animated-box__front {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	flex-flow: row nowrap;
+}
+.lakit-animated-box__front {
+	background-color: #c36
+}
+.lakit-animated-box__back {
+	background-color: #000
+}
+.lakit-animated-box__subtitle,
+.lakit-animated-box__title{
+	color: inherit;
+}
+.lakit-animated-box__overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: block;
+	top: 0;
+	left: 0;
+	z-index: 1
+}
+.lakit-animated-box__inner {
+	min-width: 100%;
+	z-index: 2;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-content: center;
+	align-items: stretch
+}
+.lakit-animated-box__icon {
+	min-width: 100%;
+	display: flex;
+	justify-content: center
+}
+.lakit-animated-box__icon .lakit-animated-box-icon-inner {
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+.lakit-animated-box__content {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-content: center;
+	align-items: stretch
+}
+.lakit-animated-box .lakit-animated-box__button {
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+.lakit-animated-box .lakit-animated-box__button--icon-before .lakit-animated-box__button-text {
+	order: 2
+}
+.lakit-animated-box .lakit-animated-box__button--icon-before .lakit-animated-box__button-icon {
+	order: 1
+}
+.lakit-animated-box .lakit-animated-box__button--icon-after .lakit-animated-box__button-text {
+	order: 1
+}
+.lakit-animated-box .lakit-animated-box__button--icon-after .lakit-animated-box__button-icon {
+	order: 2
+}
+
+.lakit-animated-box.lakit-effect-1 .lakit-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateY(0deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 2;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.lakit-animated-box.lakit-effect-1 .lakit-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateY(-180deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 1;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.lakit-animated-box.lakit-effect-1.flipped .lakit-animated-box__front {
+	transform: rotateY(180deg);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.lakit-animated-box.lakit-effect-1.flipped .lakit-animated-box__back {
+	transform: rotateY(0deg);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.lakit-animated-box.lakit-effect-2 .lakit-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateX(0deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 2;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.lakit-animated-box.lakit-effect-2 .lakit-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateX(-180deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 1;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.lakit-animated-box.lakit-effect-2.flipped .lakit-animated-box__front {
+	transform: rotateX(180deg);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.lakit-animated-box.lakit-effect-2.flipped .lakit-animated-box__back {
+	transform: rotateX(0deg);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.lakit-animated-box.lakit-effect-3 .lakit-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateX(0deg) translateY(0) scale(1);
+	z-index: 2;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.lakit-animated-box.lakit-effect-3 .lakit-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateX(-90deg) translateY(150%) scale(0);
+	z-index: 1;
+	transition: all 0.5s cubic-bezier(0.63, 0.07, 0.78, 0.55)
+}
+.lakit-animated-box.lakit-effect-3.flipped .lakit-animated-box__front {
+	transform: rotateX(90deg) translateY(-150%) scale(0);
+	transition: all 0.5s cubic-bezier(0.63, 0.07, 0.78, 0.55);
+	z-index: 1
+}
+.lakit-animated-box.lakit-effect-3.flipped .lakit-animated-box__back {
+	transform: rotateX(0deg) translateY(0) scale(1);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89);
+	z-index: 2
+}
+
+.lakit-animated-box.lakit-effect-4 .lakit-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateY(0deg) translateX(0) scale(1);
+	z-index: 2;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.lakit-animated-box.lakit-effect-4 .lakit-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateY(-90deg) translateX(-150%) scale(0);
+	z-index: 1;
+	transition: all 0.5s cubic-bezier(0.63, 0.07, 0.78, 0.55)
+}
+.lakit-animated-box.lakit-effect-4.flipped .lakit-animated-box__front {
+	transform: rotateY(90deg) translateX(150%) scale(0);
+	transition: all 0.5s cubic-bezier(0.63, 0.07, 0.78, 0.55);
+	z-index: 1
+}
+.lakit-animated-box.lakit-effect-4.flipped .lakit-animated-box__back {
+	transform: rotateY(0deg) translateX(0) scale(1);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89);
+	z-index: 2
+}
+.lakit-animated-box.lakit-effect-5 {
+	overflow: hidden
+}
+.lakit-animated-box.lakit-effect-5 .lakit-animated-box__front {
+	transform: translateY(0%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-5 .lakit-animated-box__back {
+	transform: translateY(-100%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-5.flipped .lakit-animated-box__front {
+	transform: translateY(100%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-5.flipped .lakit-animated-box__back {
+	transform: translateY(0%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-6 {
+	overflow: hidden
+}
+.lakit-animated-box.lakit-effect-6 .lakit-animated-box__front {
+	transform: translateX(0%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-6 .lakit-animated-box__back {
+	transform: translateX(-100%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-6.flipped .lakit-animated-box__front {
+	transform: translateX(100%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-6.flipped .lakit-animated-box__back {
+	transform: translateX(0%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+
+.lakit-animated-box.lakit-effect-7 .lakit-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateY(0deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-7 .lakit-animated-box__front .lakit-animated-box__inner {
+	transform: translateZ(0px);
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden
+}
+.lakit-animated-box.lakit-effect-7 .lakit-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateY(-180deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 2;
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-7 .lakit-animated-box__back .lakit-animated-box__inner {
+	transform: translateZ(120px);
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden
+}
+.lakit-animated-box.lakit-effect-7.flipped .lakit-animated-box__front {
+	transform: rotateY(180deg)
+}
+.lakit-animated-box.lakit-effect-7.flipped .lakit-animated-box__front .lakit-animated-box__inner {
+	transform: translateZ(120px)
+}
+.lakit-animated-box.lakit-effect-7.flipped .lakit-animated-box__back {
+	transform: rotateY(0deg)
+}
+.lakit-animated-box.lakit-effect-7.flipped .lakit-animated-box__back .lakit-animated-box__inner {
+	transform: translateZ(0px)
+}
+
+.lakit-animated-box.lakit-effect-8 .lakit-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateX(0deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 2;
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-8 .lakit-animated-box__front .lakit-animated-box__inner {
+	transform: translateZ(0px);
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+.lakit-animated-box.lakit-effect-8 .lakit-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateX(-180deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 1;
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.lakit-animated-box.lakit-effect-8 .lakit-animated-box__back .lakit-animated-box__inner {
+	transform: translateZ(125px);
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+.lakit-animated-box.lakit-effect-8.flipped .lakit-animated-box__front {
+	transform: rotateX(180deg);
+}
+.lakit-animated-box.lakit-effect-8.flipped .lakit-animated-box__front .lakit-animated-box__inner {
+	transform: translateZ(125px);
+}
+.lakit-animated-box.lakit-effect-8.flipped .lakit-animated-box__back {
+	transform: rotateX(0deg);
+}
+.lakit-animated-box.lakit-effect-8.flipped .lakit-animated-box__back .lakit-animated-box__inner {
+	transform: translateZ(0px);
+}
+.elementor-wrap-icon svg, .lakit-animated-box-icon-inner svg {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle
+}
