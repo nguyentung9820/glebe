@@ -41,7 +41,7 @@ $calculator_text          = '';
             ?>
             <?php if (sanitize_title( wc_cart_totals_shipping_method_label( $method ) == "Local pickup") && checked( $method->id, $chosen_method, false )) : ?>
             <div>
-              <p>Select a Pickup Date</p>
+              <p>Select a Pickup Date:</p>
               <?php
               $selected_time = (string)@WC()->session->get( 'chosen_prefer_pickup' )['prefer_time'];
               $selected_date = (string)@WC()->session->get( 'chosen_prefer_pickup' )['prefer_date'];
@@ -57,12 +57,20 @@ $calculator_text          = '';
 
               }
               ?>
-              <input type="date" id="pickup_date" value="<?= $selected_date; ?>" min="<?php echo date("Y-m-d"); ?>"/>
-              <p>Prefer Pickup Time</p>
+              <?php if (is_cart()) : ?>
+                <input type="date" id="pickup_date" value="<?= $selected_date; ?>" min="<?php echo date("Y-m-d"); ?>"/>
+              <?php else: ?>
+              <p><?= $selected_date?></p>
+              <?php endif; ?>
+              <p>Prefer Pickup Time:</p>
+              <?php if (is_cart()) : ?>
               <input type="radio" id="am" name="pickup_time" value="am" <?= $selected_time == "am" ? "checked" :''?>>
               <label for="am">AM</label><br>
               <input type="radio" id="pm" name="pickup_time" value="pm" <?= $selected_time == "pm" ? "checked" :''?>>
               <label for="pm">PM</label><br>
+              <?php else: ?>
+                <p><?= strtoupper($selected_time)?></p>
+              <?php endif; ?>
               <br/>
             </div>
             <?php endif; ?>
@@ -73,6 +81,7 @@ $calculator_text          = '';
 				<?php endforeach; ?>
 			</ul>
 			<?php if ( is_cart() ) : ?>
+        <?php if ($chosen_method !="local_pickup:1") : ?>
 				<p class="woocommerce-shipping-destination">
 					<?php
 					if ( $formatted_destination ) {
@@ -84,12 +93,15 @@ $calculator_text          = '';
 					}
 					?>
 				</p>
-			<?php endif; ?>
+        <?php endif; ?>
+      <?php endif; ?>
 			<?php
 		elseif ( ! $has_calculated_shipping || ! $formatted_destination ) :
 			if ( is_cart() && 'no' === get_option( 'woocommerce_enable_shipping_calc' ) ) {
-				echo wp_kses_post( apply_filters( 'woocommerce_shipping_not_enabled_on_cart_html', __( 'Shipping costs are calculated during checkout.', 'woocommerce' ) ) );
-			} else {
+        if ($chosen_method !="local_pickup:1") {
+          echo wp_kses_post(apply_filters('woocommerce_shipping_not_enabled_on_cart_html', __('Shipping costs are calculated during checkout.', 'woocommerce')));
+        }
+      } else {
 				echo wp_kses_post( apply_filters( 'woocommerce_shipping_may_be_available_html', __( 'Enter your address to view shipping options.', 'woocommerce' ) ) );
 			}
 		elseif ( ! is_cart() ) :
@@ -106,7 +118,9 @@ $calculator_text          = '';
 		<?php endif; ?>
 
 		<?php if ( $show_shipping_calculator ) : ?>
-			<?php woocommerce_shipping_calculator( $calculator_text ); ?>
-		<?php endif; ?>
+      <?php if ( $chosen_method !="local_pickup:1" ) : ?>
+        <?php woocommerce_shipping_calculator( $calculator_text ); ?>
+      <?php endif; ?>
+    <?php endif; ?>
 	</td>
 </tr>
