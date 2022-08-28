@@ -50,6 +50,11 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 */
 	do_action( 'woocommerce_after_shop_loop_item_title' );
     ?>
+        <?php
+            echo '<div class="item">';
+            echo wp_trim_words( get_the_excerpt(), 20 ).'...';
+            echo '</div>';
+        ?>
         <div class="tags">
             <?php if ( count( $product->get_tag_ids() ) ) : ?>
                  <?php foreach(explode(',',get_the_term_list( $product->get_id(), 'product_tag', '', ',' )) as $tag): ?>

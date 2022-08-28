@@ -265,7 +265,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
     public function loop_item_info_open(){
         echo '<div id="product_item_info" class="product_item--info">';
-            echo '<div class="product_item--info-inner">';
+            echo '<div id="product_item_info_inner" class="product_item--info-inner">';
     }
     public function loop_item_info_close(){
             echo '</div>';
