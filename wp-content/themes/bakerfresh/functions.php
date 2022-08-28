@@ -728,3 +728,8 @@ if(!class_exists('Bakerfresh_Theme_Class')){
 }
 
 new Bakerfresh_Theme_Class();
+add_action('wp_enqueue_scripts', 'override_woo_frontend_scripts');
+function override_woo_frontend_scripts() {
+  wp_deregister_script('wc-cartt');
+  wp_enqueue_script('wc-cartt', get_template_directory_uri() . '/woocommerce/assets/js/frontend/cart.js', array(), null, true);
+}
