@@ -120,6 +120,8 @@ class Products_Renderer extends Base_Products_Renderer {
 		// Categories & Tags
 		$this->set_terms_query_args( $query_args );
 
+		$this->set_cat_query_args( $query_args );
+
 		//Exclude.
 		$this->set_exclude_query_args( $query_args );
 
@@ -204,6 +206,45 @@ class Products_Renderer extends Base_Products_Renderer {
 				$taxonomy = $term_data->taxonomy;
 				$terms[ $taxonomy ][] = $id;
 			}
+		}
+		$tax_query = [];
+		foreach ( $terms as $taxonomy => $ids ) {
+			$query = [
+				'taxonomy' => $taxonomy,
+				'field' => 'term_taxonomy_id',
+				'terms' => $ids,
+			];
+
+			$tax_query[] = $query;
+		}
+
+		if ( ! empty( $tax_query ) ) {
+			$query_args['tax_query'] = array_merge( $query_args['tax_query'], $tax_query );
+		}
+	}
+
+	private function set_cat_query_args( &$query_args ) {
+		$prefix = self::QUERY_CONTROL_NAME . '_';
+
+		$query_type = $this->settings[ $prefix . 'post_type' ];
+
+		if ( 'by_id' === $query_type || 'current_query' === $query_type ) {
+			return;
+		}
+
+		if ( empty( $this->settings[ $prefix . 'include' ] ) ||
+       (empty( $this->settings[ $prefix . 'include_cat_ids' ] ) || ! in_array( 'category', $this->settings[ $prefix . 'include' ], true ) )
+    ) {
+			return;
+		}
+
+		$terms = [];
+		foreach ( $this->settings[ $prefix . 'include_cat_ids' ] as $id ) {
+//			$term_data = get_term_by( 'term_taxonomy_id', $id );
+//			if($term_data){
+				$taxonomy = 'product_cat';
+				$terms[ $taxonomy ][] = $id;
+//			}
 		}
 		$tax_query = [];
 		foreach ( $terms as $taxonomy => $ids ) {

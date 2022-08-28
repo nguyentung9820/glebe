@@ -28,7 +28,9 @@ class Group_Control_Related extends Group_Control_Query {
 
 		$fields['post_type']['options']['related'] = __( 'Related', 'lastudio-kit' );
 		$fields['include_term_ids']['condition']['post_type!'][] = 'related';
+		$fields['include_cat_ids']['condition']['post_type!'][] = 'related';
 		$fields['related_taxonomies']['condition']['post_type'][] = 'related';
+		$fields['cat_taxonomies']['condition']['post_type'][] = 'related';
 		$fields['include_authors']['condition']['post_type!'][] = 'related';
 		$fields['exclude_authors']['condition']['post_type!'][] = 'related';
 		$fields['avoid_duplicates']['condition']['post_type!'][] = 'related';
@@ -42,6 +44,24 @@ class Group_Control_Related extends Group_Control_Query {
 			'multiple' => true,
 			'condition' => [
 				'include' => 'terms',
+				'post_type' => [
+					'related',
+				],
+			],
+			'tabs_wrapper' => $tabs_wrapper,
+			'inner_tab' => $include_wrapper,
+		];
+
+		$category_taxonomies = [
+			'label' => __( 'Category', 'lastudio-kit' ),
+			'type' => Controls_Manager::SELECT2,
+			'options' => [
+        'category'=>'Categories'
+      ],
+			'label_block' => true,
+			'multiple' => true,
+			'condition' => [
+				'include' => 'category',
 				'post_type' => [
 					'related',
 				],
@@ -82,6 +102,7 @@ class Group_Control_Related extends Group_Control_Query {
 		];
 
 		$fields = Utils::array_inject( $fields, 'include_term_ids', [ 'related_taxonomies' => $related_taxonomies ] );
+		$fields = Utils::array_inject( $fields, 'include_cat_ids', [ 'cat_taxonomies' => $category_taxonomies ] );
 		$fields = Utils::array_inject( $fields, 'offset', [ 'related_fallback' => $related_fallback ] );
 		$fields = Utils::array_inject( $fields, 'related_fallback', [ 'fallback_ids' => $fallback_ids ] );
 

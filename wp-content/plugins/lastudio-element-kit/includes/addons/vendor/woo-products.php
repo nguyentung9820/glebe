@@ -76,6 +76,7 @@ class LaStudioKit_Woo_Products extends LaStudioKit_Base {
                             'related' => esc_html__( 'Related', 'lastudio-kit' ),
                             'upsells' => esc_html__( 'Up-Sells', 'lastudio-kit' ),
                             'by_id' => esc_html_x( 'Manual Selection', 'Posts Query Control', 'lastudio-kit' ),
+                            'by_cat_id' => esc_html_x( 'Category Selection', 'Posts Query Control', 'lastudio-kit' ),
                         ],
                     ],
                     'orderby' => [
@@ -100,6 +101,7 @@ class LaStudioKit_Woo_Products extends LaStudioKit_Base {
                     'include' => [
                         'options' => [
                             'terms' => esc_html__( 'Term', 'lastudio-kit' ),
+                            'category' => esc_html__( 'Categories', 'lastudio-kit'),
                         ],
                     ],
                     'exclude_ids' => [

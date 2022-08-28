@@ -105,6 +105,36 @@ class Query_Control {
                 }
 
                 break;
+            case 'cat_taxonomies':
+                $query_params = [
+                    'taxonomy' => $this->extract_post_type( $data ),
+                    'search' => $data['q'],
+                    'hide_empty' => false,
+                ];
+
+                $terms = get_terms( $query_params );
+
+                global $wp_taxonomies;
+
+                foreach ( $terms as $term ) {
+                  if ($term->taxonomy != 'product_cat')
+                  {continue;}
+                    $term_name = $this->get_term_name_with_parents( $term );
+                    if ( ! empty( $data['include_type'] ) && isset( $wp_taxonomies[ $term->taxonomy ] ) ) {
+
+                        $text = $wp_taxonomies[ $term->taxonomy ]->labels->name . ': ' . $term_name;
+                    }
+                    else {
+                        $text = $term_name;
+                    }
+
+                    $results[] = [
+                        'id' => $term->term_taxonomy_id,
+                        'text' => $text,
+                    ];
+                }
+
+                break;
 
             case 'by_id':
             case 'post':

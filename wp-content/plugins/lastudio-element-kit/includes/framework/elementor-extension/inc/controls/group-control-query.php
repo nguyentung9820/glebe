@@ -123,6 +123,31 @@ class Group_Control_Query extends Group_Control_Base {
 			'inner_tab' => $include_wrapper,
 		];
 
+		$fields['include_cat_ids'] = [
+			'label' => __( 'Category', 'lastudio-kit' ),
+			'type' => 'lastudiokit-query',
+			'post_type' => '',
+			'options' => [],
+			'label_block' => true,
+			'multiple' => true,
+			'filter_type' => 'cat_taxonomies',
+			'include_type' => true,
+			'condition' => [
+				'include' => 'category',
+				'post_type!' => [
+          'current_query',
+          'product',
+          'sale',
+          'featured',
+          'related',
+          'upsells',
+          'by_id'
+				],
+			],
+			'tabs_wrapper' => $tabs_wrapper,
+			'inner_tab' => $include_wrapper,
+		];
+
 		$fields['include_authors'] = [
 			'label' => __( 'Author', 'lastudio-kit' ),
 			'label_block' => true,
@@ -439,6 +464,7 @@ class Group_Control_Query extends Group_Control_Base {
 			'include',
 			'include_ids',
 			'include_term_ids',
+			'include_cat_ids',
 			'include_authors',
 		] );
 

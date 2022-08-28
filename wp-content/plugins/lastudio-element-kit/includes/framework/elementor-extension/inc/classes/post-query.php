@@ -198,6 +198,7 @@ class Post_Query {
 			return;
 		}
 		$this->build_terms_query_include( 'include_term_ids' );
+		$this->build_terms_query_include( 'include_cat_ids' );
 		$this->build_terms_query_exclude( 'exclude_term_ids' );
 	}
 
