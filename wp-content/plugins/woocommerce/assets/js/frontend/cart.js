@@ -185,7 +185,7 @@ jQuery( function( $ ) {
 			);
 			$( document ).on(
 				'change',
-				'select.shipping_method, :input[name^=shipping_method], #pickup_date, input[name^=pickup_time]',
+				'select.shipping_method, :input[name^=shipping_method]',
 				this.shipping_method_selected
 			);
 			$( document ).on(
@@ -222,11 +222,7 @@ jQuery( function( $ ) {
 
 			var data = {
 				security: wc_cart_params.update_shipping_method_nonce,
-				shipping_method: shipping_methods,
-        prefer_pickup:{
-          prefer_date: $('#pickup_date').val(),
-          prefer_time: $('input[name="pickup_time"]:checked').val(),
-        }
+				shipping_method: shipping_methods
 			};
 
 			$.ajax( {

@@ -48,7 +48,7 @@ $calculator_text          = '';
 
               if (empty($selected_time) || empty($selected_date)){
                 $data = array(
-                  'prefer_time' => $selected_time ?: 'am',
+                  'prefer_time' => $selected_time ?: date("H:i"),
                   'prefer_date' => $selected_date ?: date("Y-m-d"),
                 );
                 WC()->session->set( 'chosen_prefer_pickup',$data );
@@ -64,10 +64,7 @@ $calculator_text          = '';
               <?php endif; ?>
               <p>Prefer Pickup Time:</p>
               <?php if (is_cart()) : ?>
-              <input type="radio" id="am" name="pickup_time" value="am" <?= $selected_time == "am" ? "checked" :''?>>
-              <label for="am">AM</label><br>
-              <input type="radio" id="pm" name="pickup_time" value="pm" <?= $selected_time == "pm" ? "checked" :''?>>
-              <label for="pm">PM</label><br>
+              <input type="time" name="pickup_time" id="pickup_time" value="<?= $selected_time; ?>">
               <?php else: ?>
                 <p><?= strtoupper($selected_time)?></p>
               <?php endif; ?>
