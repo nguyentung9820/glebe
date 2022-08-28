@@ -325,8 +325,8 @@ if(!class_exists('Bakerfresh_WooCommerce_Config')){
             $type = wc_get_loop_prop('lakit_type');
 
             if($type == 'current_query' || $layout == 'list' || ( $layout == 'grid' && $preset == 8 ) ){
-                echo '<div class="item--excerpt">';
-                echo wp_trim_words( get_the_excerpt(), 10 );
+                echo '<div class="item">';
+                echo wp_trim_words( get_the_excerpt(), 20 ).'...';
                 echo '</div>';
             }
         }
