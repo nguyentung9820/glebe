@@ -24,7 +24,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<li <?php wc_product_class( '', $product ); ?>>
+<li id="single-product" <?php wc_product_class( '', $product ); ?>>
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -32,15 +32,9 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_template_loop_product_link_open - 10
 	 */
 	do_action( 'woocommerce_before_shop_loop_item' );
-
-	/**
-	 * Hook: woocommerce_before_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_show_product_loop_sale_flash - 10
-	 * @hooked woocommerce_template_loop_product_thumbnail - 10
-	 */
-	do_action( 'woocommerce_before_shop_loop_item_title' );
-
+    ?>
+    <div id="information">
+        <?php
 	/**
 	 * Hook: woocommerce_shop_loop_item_title.
 	 *
@@ -55,7 +49,39 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_template_loop_price - 10
 	 */
 	do_action( 'woocommerce_after_shop_loop_item_title' );
-
+    ?>
+        <div class="tags">
+            <?php if ( count( $product->get_tag_ids() ) ) : ?>
+                 <?php foreach(explode(',',get_the_term_list( $product->get_id(), 'product_tag', '', ',' )) as $tag): ?>
+                    <span id="tag" class="tagged_as detail-container">
+                        <span class="detail-content"><?php echo $tag; ?></span>
+                    </span>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+    <div>
+        <?php
+    /**
+     * Hook: woocommerce_before_shop_loop_item_title.
+     *
+     * @hooked woocommerce_show_product_loop_sale_flash - 10
+     * @hooked woocommerce_template_loop_product_thumbnail - 10
+     */
+    do_action( 'woocommerce_before_shop_loop_item_title' );
+    ?>
+        <?php
+        printf(
+            '<a class="%s" href="%s" data-href="%s" title="%s"><button class="button-buy-now labtn-text" style="display: none">%s</button></a>',
+            'quickview la-quickview-button',
+            esc_url(get_the_permalink($product->get_id())),
+            esc_url(add_query_arg('product_quickview', $product->get_id(), get_the_permalink($product->get_id()))),
+            esc_attr_x('Buy Now', 'front-view', 'bakerfresh'),
+            esc_attr_x('Buy Now', 'front-view', 'bakerfresh')
+        );
+        ?>
+    </div>
+    <?php
 	/**
 	 * Hook: woocommerce_after_shop_loop_item.
 	 *

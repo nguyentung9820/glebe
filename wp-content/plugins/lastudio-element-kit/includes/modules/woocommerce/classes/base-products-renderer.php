@@ -241,13 +241,13 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
     }
 
     public function loop_item_open(){
-        echo '<div class="product_item--inner">';
+        echo '<div id="item" class="product_item--inner">';
     }
     public function loop_item_close(){
         echo '</div>';
     }
     public function loop_item_thumbnail_open(){
-        echo '<div class="product_item--thumbnail">';
+        echo '<div id="product-image" class="product_item--thumbnail">';
             echo '<div class="product_item--thumbnail-holder">';
     }
     public function loop_item_thumbnail_close(){
@@ -264,7 +264,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
     }
 
     public function loop_item_info_open(){
-        echo '<div class="product_item--info">';
+        echo '<div id="product_item_info" class="product_item--info">';
             echo '<div class="product_item--info-inner">';
     }
     public function loop_item_info_close(){
